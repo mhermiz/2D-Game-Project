@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class ScrollLoop : MonoBehaviour
 {
-
-    public float loopSpeed;
     public Renderer bgRenderer;
 
     // Update is called once per frame
     void Update()
     {
-        bgRenderer.material.mainTextureOffset += new Vector2(loopSpeed * Time.deltaTime, 0f);
+        bgRenderer.material.mainTextureOffset += new Vector2(GameSpeed.speed * Time.deltaTime, 0f);
+    }
+
+    public void ResetBackground()
+    {
+        bgRenderer.material.mainTextureOffset = Vector2.zero;
     }
 }
