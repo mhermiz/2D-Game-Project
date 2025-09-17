@@ -25,16 +25,16 @@ public class Collectible : MonoBehaviour
         {
             collected = true;
             Debug.Log("collected");
-            
+
             // Play animation
             if (anim != null)
             {
-                anim.SetTrigger("Collect");
+                anim.SetTrigger("OnPlayerCollision");
+                
+                // Destroy after animation plays
+                float delay = anim != null ? anim.GetCurrentAnimatorStateInfo(0).length : 0.2f;
+                Destroy(gameObject, delay);
             }
-
-            // Destroy after animation plays
-            float delay = anim != null ? anim.GetCurrentAnimatorStateInfo(0).length : 0.2f;
-            Destroy(gameObject, delay);
         }
 	}
 }
