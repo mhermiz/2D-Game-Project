@@ -2,11 +2,13 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public static bool GameStarted = false;
     public GameObject StartMenu;
+    public GameObject PlayerUI;
     public GameObject DeathMenu;
     public GameObject Player;
     private Vector3 playerStartPos;
@@ -20,6 +22,12 @@ public class GameManager : MonoBehaviour
 
         // Get player position
         playerStartPos = Player.transform.position;
+
+        // Dont show Death Menu
+        DeathMenu.SetActive(false);
+
+        // Dont show PlayerUI
+        PlayerUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -38,18 +46,20 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        CharacterController.dead = false;
         Time.timeScale = 1f;
         GameStarted = true;
         StartMenu.SetActive(false);
+        PlayerUI.SetActive(true);
         Debug.Log("Game Started");
     }
 
     public void RestartGame()
     {
         StartMenu.SetActive(true);
+        PlayerUI.SetActive(false);
         GameStarted = false;
         DeathMenu.SetActive(false);
-        CharacterController.dead = false;
         Player.transform.position = playerStartPos;
 
         // Reset Environment
@@ -57,7 +67,12 @@ public class GameManager : MonoBehaviour
         {
             env.ResetBackground();
         }
-        
+
+        // Reset Statistics
+        GameSpeed.elapsedTime = 0f;
+        GameSpeed.distanceTraveled = 0f;
+        Collectible.soulcounter = 0f;
+
         Debug.Log("Game Reset");
     }
 }

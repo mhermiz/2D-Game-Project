@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameSpeed : MonoBehaviour
 {
@@ -11,7 +14,9 @@ public class GameSpeed : MonoBehaviour
     public float maxSpeed = 12f;       // top speed
     public float timeToMax = 120f;     // how many seconds it takes to reach max speed
 
-    private float elapsedTime;
+    public static float elapsedTime;
+    public static float distanceTraveled;
+    public TMP_Text distanceText;
 
     // Start is called before the first frame update
     void Start()
@@ -29,5 +34,11 @@ public class GameSpeed : MonoBehaviour
 
         // Smooth ramp using Lerp
         speed = Mathf.Lerp(startSpeed, maxSpeed, t);
+
+        // distance counter
+        distanceTraveled += speed * Time.deltaTime * 15;
+
+        // update distance in playthrough
+        distanceText.text = distanceTraveled.ToString("F1") + " m";
     }
 }

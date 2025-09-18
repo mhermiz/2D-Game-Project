@@ -6,6 +6,7 @@ public class Collectible : MonoBehaviour
 {
     private Animator anim;
     private bool collected = false;
+    public static float soulcounter = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class Collectible : MonoBehaviour
         if (!collected && other.CompareTag("Player"))
         {
             collected = true;
+            soulcounter++;
             Debug.Log("collected");
 
             // Play animation
