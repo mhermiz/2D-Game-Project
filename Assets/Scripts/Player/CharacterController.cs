@@ -52,6 +52,7 @@ public class CharacterController : MonoBehaviour
             {
                 isPhasing = false;
                 bar.ResetBar();
+                SetCharacterTransparency(1f);
             }
         }
     }
@@ -78,6 +79,18 @@ public class CharacterController : MonoBehaviour
         DeathMenu.SetActive(true);
         dead = true;
 
+        // Stop Background Music
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.StopMusic();
+        }
+
+        // Play Game Over Audio
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.deathSource.PlayOneShot(AudioManager.Instance.deathSound);
+        }
+
         // Don't show PlayerUI
         PlayerUI.SetActive(false);
 
@@ -100,5 +113,20 @@ public class CharacterController : MonoBehaviour
 
         // Immediately update the bar so it starts full at the moment power activates
         bar.fillImage.fillAmount = 1f;
+
+        SetCharacterTransparency(0.35f);
+    }
+
+    void SetCharacterTransparency(float alpha)
+    {
+        // Turn down sprite opacity
+        SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
+
+        foreach (SpriteRenderer sr in sprites)
+        {
+            Color c = sr.color;
+            c.a = alpha;
+            sr.color = c;
+        }
     }
 }

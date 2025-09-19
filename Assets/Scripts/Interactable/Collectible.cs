@@ -35,6 +35,12 @@ public class Collectible : MonoBehaviour
             Debug.Log("collected");
             bar.AddCollectible();
 
+            // Play Collect Sound
+            if (AudioManager.Instance != null)
+            {
+                AudioManager.Instance.collectSource.PlayOneShot(AudioManager.Instance.collectSound);
+            }
+
             // Play animation
             if (anim != null)
             {

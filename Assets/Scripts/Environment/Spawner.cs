@@ -13,9 +13,11 @@ public class Spawner : MonoBehaviour
     private float collectiblePhaseDuration;
     public static float phasetimer = 0f;
     private float nextEnemySpawnTime;
+    private float nextFireSpawnTime;
     private float nextCollectibleSpawnTime;
     public static bool enemyPhase = false;
     public static float timer = 0f;
+    private float fireTimer = 0f;
 
     public static List<GameObject> spawnedObjects = new(); // Track spawns
 
@@ -25,6 +27,7 @@ public class Spawner : MonoBehaviour
         // Pick first spawn randomly
         nextEnemySpawnTime = Random.Range(1f, 5f);
         nextCollectibleSpawnTime = Random.Range(1f, 2f);
+        nextFireSpawnTime = Random.Range(2f, 4f);
 
         // Phase interval
         enemyPhaseDuration = Random.Range(10f, 20f);
@@ -66,6 +69,14 @@ public class Spawner : MonoBehaviour
             timer = 0f;
             nextEnemySpawnTime = Random.Range(1f, 5f);
         }
+
+        fireTimer += Time.deltaTime;
+        if (fireTimer >= nextFireSpawnTime)
+        {
+            SpawnFireWall();
+            fireTimer = 0f;
+            nextFireSpawnTime = Random.Range(2f, 4f);
+        }
     }
 
     void HandleCollectibleSpawning()
@@ -96,13 +107,26 @@ public class Spawner : MonoBehaviour
         spawnedObjects.Add(shadowhand);
     }
 
+    void SpawnFireWall()
+    {
+        // Choose between top or bottom fire wall
+        int fireChoice = Random.Range(4, 6);
+
+        GameObject prefab = spawnPattern[fireChoice];
+        Vector3 spawnPos = new Vector3(transform.position.x, prefab.transform.position.y);
+        GameObject fireWall = Instantiate(prefab, spawnPos, prefab.transform.rotation);
+
+        // Keep track of spawned objects
+        spawnedObjects.Add(fireWall);
+    }
+
     void SpawnSoulOrb()
     {
         // Random y spawn
         float randomY = Random.Range(-3.5f, 3.5f);
 
         // Random collectible pattern
-        int collectPattern = Random.Range(1, 3);
+        int collectPattern = Random.Range(1, 4);
 
         Vector3 spawnPos = new Vector3(transform.position.x, randomY);
         GameObject soulOrb = Instantiate(spawnPattern[collectPattern], spawnPos, Quaternion.identity);

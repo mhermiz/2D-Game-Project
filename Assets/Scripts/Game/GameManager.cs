@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     public GameObject StartMenu;
     public GameObject PlayerUI;
     public GameObject DeathMenu;
+    public GameObject HelpMenu;
     public GameObject Player;
     private Vector3 playerStartPos;
     public ScrollLoop[] Environment;
@@ -29,6 +30,9 @@ public class GameManager : MonoBehaviour
 
         // Dont show PlayerUI
         PlayerUI.SetActive(false);
+
+        // Dont show HelpMenu
+        HelpMenu.SetActive(false);
     }
 
     // Update is called once per frame
@@ -52,6 +56,13 @@ public class GameManager : MonoBehaviour
         GameStarted = true;
         StartMenu.SetActive(false);
         PlayerUI.SetActive(true);
+        HelpMenu.SetActive(false);
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.startSource.PlayOneShot(AudioManager.Instance.startSound);
+        }
+
         Debug.Log("Game Started");
     }
 
@@ -72,6 +83,18 @@ public class GameManager : MonoBehaviour
         Spawner.ResetSpawner();
         Spawner.ClearSpawns();
         bar.ResetBar();
+
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.restartSource.PlayOneShot(AudioManager.Instance.restartSound);
+            AudioManager.Instance.deathSource.Stop();
+        }
+
+        // Replay Background Music
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayMusic();
+        }
 
         // Reset Statistics
         GameSpeed.elapsedTime = 0f;
