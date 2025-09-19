@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4804946031806046791}
+  - component: {fileID: 6246538352836532943}
   m_Layer: 0
   m_Name: SoulPattern3
-  m_TagString: Untagged
+  m_TagString: Collectible
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35,6 +36,18 @@ Transform:
   - {fileID: 3839144090509770800}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6246538352836532943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7284361681793755320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23692a8c3c2f694390c8f60ac307da7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2135629838402726595
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -51,7 +64,7 @@ PrefabInstance:
     - target: {fileID: 6286642103729979924, guid: 851423e0387cf0f43ace349370777897,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.43
+      value: 0.29000008
       objectReference: {fileID: 0}
     - target: {fileID: 6286642103729979924, guid: 851423e0387cf0f43ace349370777897,
         type: 3}
@@ -125,7 +138,7 @@ PrefabInstance:
     - target: {fileID: 6286642103729979924, guid: 851423e0387cf0f43ace349370777897,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.87
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 6286642103729979924, guid: 851423e0387cf0f43ace349370777897,
         type: 3}
@@ -199,7 +212,7 @@ PrefabInstance:
     - target: {fileID: 6286642103729979924, guid: 851423e0387cf0f43ace349370777897,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.54
+      value: -0.81999993
       objectReference: {fileID: 0}
     - target: {fileID: 6286642103729979924, guid: 851423e0387cf0f43ace349370777897,
         type: 3}
@@ -273,7 +286,7 @@ PrefabInstance:
     - target: {fileID: 6286642103729979924, guid: 851423e0387cf0f43ace349370777897,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.99
+      value: -0.26999998
       objectReference: {fileID: 0}
     - target: {fileID: 6286642103729979924, guid: 851423e0387cf0f43ace349370777897,
         type: 3}

@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject Player;
     private Vector3 playerStartPos;
     public ScrollLoop[] Environment;
+    public CollectibleBar bar;
 
     // Start is called before the first frame update
     void Start()
@@ -67,6 +68,10 @@ public class GameManager : MonoBehaviour
         {
             env.ResetBackground();
         }
+
+        Spawner.ResetSpawner();
+        Spawner.ClearSpawns();
+        bar.ResetBar();
 
         // Reset Statistics
         GameSpeed.elapsedTime = 0f;
